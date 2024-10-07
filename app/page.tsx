@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import Particles from "./components/particles";
 import profilecopy from "../images/profile-copy.png"
 import ProjectCard from "./components/project_card";
 //import { allProjects } from "contentlayer/generated";
@@ -9,22 +7,16 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Article } from "./article";
 
-import { Github, Mail, Linkedin, GithubIcon, FileText } from "lucide-react";
+import { Github, Mail, Linkedin, FileText } from "lucide-react";
 import getPostMetaData from "@/utils/getPostMetadata";
 
 
 export default function Home() {
-  const navigation = [
-    { name: "Contact", href: "/contact" },
-  ];
-
   //const sorted = require("./content.json");
   const postMetadata = getPostMetaData("projects")
   const professional = postMetadata.filter((project) => project.type === "professional")
@@ -36,10 +28,6 @@ export default function Home() {
   <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-900 overflow-x-hidden">
     <div className="text-center">
 	    <div className="hidden h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      <Particles
-        className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={100}
-      />
 	    <h1 className="z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline font-display sm:text-4xl md:text-8xl whitespace-nowrap bg-clip-text">
 				Shreyas Basavatia
 			</h1>
@@ -109,8 +97,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {professional
               .filter((_, i) => i % 3 === 0)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -118,8 +106,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {professional
               .filter((_, i) => i % 3 === 1)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -127,8 +115,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {professional
               .filter((_, i) => i % 3 === 2)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -140,8 +128,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {group
               .filter((_, i) => i % 3 === 0)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -149,8 +137,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {group
               .filter((_, i) => i % 3 === 1)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -158,8 +146,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {group
               .filter((_, i) => i % 3 === 2)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -171,8 +159,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {personal
               .filter((_, i) => i % 3 === 0)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -180,8 +168,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {personal
               .filter((_, i) => i % 3 === 1)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -189,8 +177,8 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4">
             {personal
               .filter((_, i) => i % 3 === 2)
-              .map((project) => (
-                <ProjectCard project={project}>
+              .map((project, index) => (
+                <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
               ))}
@@ -204,16 +192,3 @@ export default function Home() {
     
 	);
 }
-
-// import fsPromises from 'fs/promises';
-// import path from 'path'
-
-// export async function getStaticProps() {
-//   const filePath = path.join(process.cwd(), 'content.json');
-//   const jsonData = await fsPromises.readFile(filePath);
-//   const objectData = JSON.parse(jsonData);
-
-//   return {
-//     props: objectData
-//   }
-// }

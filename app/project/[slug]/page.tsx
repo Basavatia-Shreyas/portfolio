@@ -5,25 +5,10 @@ import fs from "fs";
 import matter from "gray-matter";
 import Link from "next/link";
 import { Github, ArrowLeft } from "lucide-react";
-import { render } from 'react-dom'
 
 // Define the type for the slug parameter
 interface Params {
   slug: string;
-}
-
-// Define the return type for the content matter result
-interface MatterResult {
-  content: string;
-  data: {
-    title: string;
-    description?: string;
-    date?: string;
-    published?: boolean;
-    url?: string;
-    tags: string;
-    [key: string]: any; // Allow for additional metadata properties
-  };
 }
 
 // Function to get project content based on the slug
@@ -59,12 +44,7 @@ interface ProjectPageProps {
 const ProjectPage: React.FC<ProjectPageProps> = ({ params }) => {
   const { content, data } = getProjectContent(params.slug);
 
-  const slug = params.slug;
-  const post = getProjectContent(slug)
-  //console.log(post)
-
   return (
-    
     <div className="bg-white w-full h-full">
         <header
 			className="relative isolate overflow-hidden bg-zinc-900"

@@ -1,15 +1,6 @@
 "use client";
-import {
-	motion,
-	useMotionTemplate,
-	useMotionValue,
-	useSpring,
-} from "framer-motion";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge"
-
-
-import { MouseEventHandler, PropsWithChildren } from "react";
 
 interface Project {
 	title: string;
@@ -27,7 +18,6 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-	console.log(project.tags);
 	const items = project.tags.split(',');
 	return (
 		<Link href={`/project/${project.slug}`}>
@@ -37,7 +27,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 				</h1>
 				<div className="my-2">
 					{items.map((item, index) => (
-						<Badge variant="secondary" className="mx-1">{item}</Badge>
+						<Badge key={index} variant="secondary" className="mx-1">{item}</Badge>
 					))}
 				</div>
 				<p className="text-zinc-400 text-sm">
