@@ -1,0 +1,42 @@
+---
+title: "Flame AI"
+description: Hacklytics 2024 project Flame AI - Advanced fire detection system alerting first responders & admins quickly, providing key data for optimal resource allocation & swift rescues.
+url: https://devfolio.co/projects/flame-ai-3ed1
+repository: sswadkar/hackalytics/tree/main
+date: "2024-02-11"
+published: true
+type: group
+tags: Hacklytics, AI
+---
+## Development Tools
+In order to complete this project, I used the following tools
+- Flask
+- JavaScript
+- SciKit-Learn
+- YoloV5 Computer Vision Model
+- HTML/CSS
+
+
+## The problem Flame AI solves
+Flame AI revolutionizes fire safety with its advanced detection technology, offering a wide range of benefits for First Responders, Residential Areas, Educational Institutions, and Commercial Spaces 
+
+Flame AI uses a fine-tuned YoloV5 Computer Vision model to detect fire and people and a logistic regression model to detect fire using non-visual features such as temperature, humidity and more. If a fire is detected, Flame AI automatically alerts authorities about where a fire is and how many people are effected.
+Minimizes business disruptions and improves public safety in malls, theaters, and other spaces with early detection and alerts.
+
+## Images
+![](https://res.cloudinary.com/dmpauhme6/image/upload/v1709311620/fbdjx34oqi2ri89a1equ.webp)
+![](https://res.cloudinary.com/dmpauhme6/image/upload/v1709311621/geul6cdulismm1ydz7ez.webp)
+![](https://res.cloudinary.com/dmpauhme6/image/upload/v1709311620/at92qwvkotizaoi1weo6.webp)
+
+## Challenges we ran into
+Navigating the challenges of developing Flame AI provided our team with invaluable lessons. As newcomers to computer vision, the steep learning curve in training models with PyTorch was our first hurdle. We grappled with understanding the nuances of preprocessing data and integrating models into a Flask backend, a task compounded by the complexity of overlaying multiple models for accurate detection.
+
+Another significant challenge was the real-time processing of video feeds. Ensuring our system could analyze live streams without significant latency required optimizing our use of Socket.IO for data transmission and streamlining the processing capabilities of our PyTorch models. We had to balance the demand for real-time analytics with the computational limits of our hardware, adjusting the frame rate processing to achieve a functional yet efficient solution.
+
+Data acquisition and model training presented another layer of complexity. Fine-tuning the YOLOv5 model with a limited dataset of fire images and ensuring it could accurately distinguish between fire and non-fire scenarios required meticulous work. Similarly, developing a logistic regression model for smoke detection involved sifting through extensive data to find reliable predictors of smoke presence, a task that was both time-consuming and technically demanding.
+
+Lastly, the integration of various technologies—HTML, CSS, JavaScript, Flask, PyTorch, and Scikit-learn—into a cohesive system was a logistical challenge. We had to ensure seamless communication between the frontend and backend, guaranteeing that user interactions would trigger appropriate responses from the detection models.
+
+Despite these challenges, our journey through the development of Flame AI has been a testament to the power of resilience, teamwork, and the relentless pursuit of innovation in the face of technical adversity.
+
+

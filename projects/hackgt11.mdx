@@ -1,0 +1,107 @@
+---
+title: "QuickER"
+description: HackGT 11 project QuickER - End-to-end solution designed to improve the efficiency of emergency response systems and ER management
+url: https://devpost.com/software/routerx?ref_content=my-projects-tab&ref_feature=my_projects
+repository:
+date: "2024-09-29"
+published: true
+type: group
+tags: HackGT, AI, Python, Next.js
+---
+## Development Tools
+In order to complete this project, I used the following tools
+- Next.js
+- TailwindCSS
+- Llama3.1
+- LangChain
+- Google Maps
+- Flask
+
+## Inspiration
+
+Emergency rooms (ER) across the world are increasingly overwhelmed, leading to significant delays in patient care and inefficient resource management. ER overcrowding has reached critical levels in many hospitals, with patients often facing long wait times due to a shortage of available beds, equipment, and staff resources \[1\]. Overcrowded ERs are associated with higher patient mortality rates, increased lengths of stay, and a greater likelihood of patients leaving without being seen \[2\].
+
+QuickER was developed to address these critical issues by creating an intelligent system that enhances the entire emergency response process—from the initial 911 call to the moment a patient is treated in the ER. 
+
+## What it does
+
+QuickER is an end-to-end solution designed to improve the efficiency of emergency response systems and ER management. Here’s how it works:
+
+1. **Live 911 Call Analysis**: When someone calls 911, QuickER automatically transcribes the audio of the call in real-time, capturing critical information about the patient’s symptoms and emergency details.
+
+2. **Symptom and Condition Prediction**: Using advanced prompting and search techniques with LLMs, QuickER analyzes the transcribed data to predict potential medical conditions the patient may have. It also suggests possible treatments, medications, diagnostic tests, and operations that the patient might need upon arrival at the ER. This information is compiled and sent to the QuickER dashboard.
+
+3. **Dashboard Integration**: All gathered information is sent to the QuickER dashboard, which provides a user-friendly overview of the hospital’s current state, including the status of current patients and the details of incoming ones. This allows hospital staff to view each incoming patient’s predicted needs before they arrive.
+
+4. **Resource Allocation**: Based on the predicted conditions and available resources, the QuickER dashboard helps hospital staff pre-allocate resources such as medications, diagnostic rooms (like X-ray or MRI), and operating rooms. This proactive approach allows doctors and nurses to start preparing for patients even before they reach the hospital.
+
+5. **Patient Routing**: Upon arrival, patients are quickly routed to available beds and directed to the necessary resources based on their triage status. This efficient routing minimizes wait times and ensures that patients receive the right care at the right time.
+
+QuickER works from the moment someone calls for an emergency until they receive treatment at the hospital, speeding up the process, reducing the load on hospital resources, and reducing the chance for human error.
+
+## How we built it
+
+QuickER was divided into several submodules that work cohesively to create an end-to-end emergency response solution:
+
+1. **911 Call Analysis**:  
+   1. Twilio gathers audio directly from 911 calls, ensuring immediate and secure access to critical information.  
+   2. OpenAI Whisper, a speech-to-text model, transcribes the audio with high accuracy, handling challenging conditions like background noise and varying accents.  
+   3. Combined, Twilio and Whisper transform spoken symptoms and emergency details into actionable text data.  
+   4. Real-time processing allows QuickER to quickly extract key information for the rest of the pipeline.
+
+2. **Symptom and Condition Prediction Model**:  
+   1. The symptom and condition prediction submodule is central to QuickER's decision-making process.  
+   2. Once transcription is complete, LangChain orchestrates data flow between components.  
+   3. LangChain manages the sequence of operations to extract symptoms, predict conditions, and suggest treatments.  
+   4. Llama3.1 is prompted by LangChain to analyze the text, identify potential medical conditions, recommend medications, and suggest diagnostic tests.  
+   5. Retrieval Augmented Generation (RAG) pulls relevant data from trusted medical textbooks and references for validation.  
+   6. Chain of Thought prompting improves Llama3.1's accuracy through multi-step logical reasoning. The model will re-prompt itself until it arrives at a solution that it is satisfied with.  
+   7. Comprehensive prediction data is sent to the QuickER dashboard for hospital staff to review.
+
+3. **QuickER Dashboard**:  
+   1. **Backend \- Flask**:   
+      1. Powered by Flask, the backend handles API integration, asynchronous data processing, and server-side logic. It ensures smooth interaction with AI models and maintains low-latency communication with the frontend, critical for real-time emergency operations.  
+   2. **Frontend**  
+      1. **Next.js:** The frontend stack is a performance beast, leveraging Next.js for SSR (Server-Side Rendering), ISR (Incremental Static Regeneration), and hydration for near-instant page loads.   
+      2. **TailwindCSS**: TailwindCSS delivers pixel-perfect utility-based styling with zero-runtime CSS and responsive layouts. Healthcare staff get instant feedback via real-time updates, React hooks, and context-based state management, enabling quick decisions on patient needs and resource allocation.  
+   3. **Seamless Integration**:   
+      1. This cutting-edge tech stack uses advanced front-back API coupling, transforming emergency response into a streamlined, event-driven process.QuickER delivers optimal performance and UX, improving ER efficiency and patient outcomes at scale.
+
+    
+
+
+## Challenges we ran into
+
+* **Speech-to-Text Accuracy**: Ensuring the transcription is accurate, especially with varying accents and noisy environments, was challenging and required fine-tuning.  
+* **Complexity of Medical Predictions**: Analyzing symptoms accurately to predict conditions and needed treatments required precise prompting and extensive model training and experimentation  
+* **Real-Time Data Integration**: Integrating real-time patient data into a dynamic dashboard while maintaining speed and reliability posed significant technical challenges.  
+* **Scalability**: Adapting the system to handle multiple simultaneous 911 calls and rapidly updating the dashboard in busy hospital settings was difficult.
+
+## Accomplishments that we're proud of
+
+* Maintaining security and confidentiality for patients and hospitals \- QuickER maintains patient confidentiality as the entirety of the prediction model is run locally. This means patient symptoms and call transcriptions are not sent to 3rd parties that can view that data.  
+* Successfully integrated all submodules to work together seamlessly and quickly  
+* Developed a visually appealing and comprehensive dashboard that significantly improves ER efficiency by providing a clear view of current and incoming patients.  
+* Enhanced emergency response workflows, reducing preparation time for incoming patients and improving resource utilization in the ER.
+
+## What we learned
+
+* The importance of real-time data processing and integration in healthcare settings.  
+* Advanced prompt engineering and model fine-tuning to improve accuracy in medical predictions.  
+* Working in a collaborative software development environment, emphasizing the division of complex tasks into manageable submodules.  
+* Handling critical data with strict privacy and security measures to protect sensitive patient information.
+
+## What's next for QuickER
+
+* **Improved Symptom Recognition**: Further refine the AI models to better recognize and interpret a wider range of symptoms from 911 calls.  
+* **Scalability to More Hospitals**: Expand QuickER’s capabilities to support multiple hospitals, including smaller facilities with limited resources.  
+* **Integration with Wearables and IoT Devices**: Incorporate data from patient wearables and other IoT devices for a more comprehensive health profile.  
+* **Advanced Resource Prediction**: Enhance resource allocation algorithms to predict future availability based on real-time usage trends.  
+* **Emergency Response Coordination**: Expand to assist not only ERs but also integrate with ambulance services for end-to-end emergency management, ensuring patients get the right care from the moment the call is made.
+
+References
+
+1. American College of Emergency Physicians (ACEP). “Emergency Department Crowding.” ACEP.org  
+2. *Journal of Emergency Medicine.* “Impact of Emergency Department Crowding on Outcomes of Admitted Patients
+
+

@@ -1,0 +1,47 @@
+---
+title: "IntelliDoc"
+description: Intelligent document processing for parsing company term sheets reasoning about the information and generating insights
+date: "2024-08-09"
+published: true
+type: professional
+tags: Venerable, AI, Python
+---
+I created IntelliDoc as a software engineering intern at Venerable. Venerable recieves term sheets for some of the investments that it makes. Previously verifying the information in these terms sheets is a manual, lengthy, and tedius process. IntelliDoc works with over **96%** accuracy, **10x faster**, and **cheaper** to complete this task.
+
+### Challenges associated with verifying term sheets
+##### 1. Complex lookup and reasoning
+Information is scattered across the document which can be hard to find. In addition, veifying the information for one term often involves finding information from other terms until the desired values are found.
+
+##### 2. Business calculations
+There are a handful of business calcualtions that must take place in regards to the dates of certain terms. Verifying that a date is a business day is important and if not, the apporiate calculations must be completed to find the business day.
+
+##### 3. Generating insights
+Internal business teams find it helpful for data from the term sheets to business insights to make better decisions faster. IntelliDoc automatically generates these insights from the information it finds in the term sheets such as reset schedules, contracts, and additional information
+
+### Demonstration
+###### This front-end was built to display the capabilities of IntelliDoc in a user-friendly way.
+
+Note: Some redaction for confidentiality and protection of intellectual property.
+
+The user can either upload a PDF term sheet or select an existing term sheet from an S3 bucket to analyze. The user can then select which model to use (either AWS Bedrock or open-source HuggingFace models). After pressing analyze, IntelliDoc will analyze the document, reason about the inforamtion, and generate insights
+![](https://res.cloudinary.com/dmpauhme6/image/upload/v1724340579/jdlxl5obbrxbkaxanu9k.png)
+
+Sample output from IntelliDoc
+Raw output is shown in the top left. A tabular form of data is shown in the bottom left. Top right is the expected output and bottom right is the comparison between expected and actual output
+![](https://res.cloudinary.com/dmpauhme6/image/upload/v1724340581/af4odsrvepupaskklnnr.png)
+
+
+### Technologies
+There were many AI and cloud technologies used to create IntelliDoc
+- AWS S3
+- AWS Lambda
+- AWS Bedrock
+- AWS Textract
+- AWS Comprehend
+- HuggingFace
+- Gradio
+- Lang-Chain
+- Pandas
+- Numpy
+
+IntelliDoc was unit-tested with over **90% code-coverage**
