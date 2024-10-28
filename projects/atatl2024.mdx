@@ -1,0 +1,111 @@
+---
+title: "GraphIQ"
+description: AI ATL 2024 project GraphIQ - GraphIQ is an innovative and interactive AI-powered learning platform that guides students through data structure and algorithm concepts with practice problems, interactive diagrams, and detailed explanations
+url: https://devpost.com/software/graphiq
+repository: https://github.com/Basavatia-Shreyas/GraphIQ
+date: "2024-10-27"
+published: true
+type: group
+tags: AI ATL, AI, Python, Next.js
+---
+## Development Tools
+In order to complete this project, I worked with the following tools
+- Next.js
+- React.js
+- TailwindCSS
+- Anthropic Claude 3.5 Sonnet
+- Google Gemini 1.5 Flash
+- LangChain
+- Flask
+- Mermaid.js
+
+## Inspiration
+
+As students, we understand that complex concepts are easier to grasp through interactive, multimodal learning, and we wanted to build a platform that leverages conversational AI to make learning both dynamic and accessible.
+
+We were heavily inspired by the power of visual learning and the growing need for more interactive, engaging educational tools. 
+
+## What it does
+
+GraphIQ is a multimodal and interactive AI-powered learning platform that guides students through data structure and algorithm concepts with practice problems, interactive diagrams, and detailed explanations. GraphIQ accomplishes this through voice, text, and visual modalities.
+
+* Interactive Diagramming: GraphIQ will generate Mermaid.js diagrams in real-time. They can then be manipulated and passed to the AI assistant for feedback
+
+* AI-Powered Assistant: An intelligent conversational AI experience that helps explain concepts, answer questions, creates diagrams and practice problems, and guide users through their learning journey
+
+* Practice Problems: The GraphIQ tutor provides users with infinite practice problems and evaluates the student’s work through diagrams
+
+* Version History: Tracks changes to diagrams, allowing users to see how their understanding evolves over time
+
+* Voice Interaction: Supports voice input for questions and text-to-speech for answers, making it accessible and hands-free
+
+* Export Options: Users can export diagrams and study-guides for later reference or sharing
+
+* Active Learning: Gemini runs analysis on the entire conversation history to do two things
+- Provide a chat summary that can be exported into a study guide for the student
+- Provide analysis of the AI-Powered Assistant’s performance to improve future conversations
+
+
+## How we built it
+
+We built GraphIQ using a stack of modern web technologies:
+
+* Frontend: React with Next.js for a responsive and dynamic user interface.
+* UI Components: Leveraged shadcn/ui for a sleek, consistent design.
+* Integration: Flask for custom POST and GET requests to our various endpoints
+* Diagramming: Integrated Mermaid.js for creating and rendering diagrams. These diagrams can also be exported in SVG form
+* AI Integration: 
+
+	- NLX: Used to build the GraphIQ Tutor. The NLX Bot is responsible for understanding what topic the student wants to learn, creating diagrams, creating practice problems, and explaining concepts by querying powerful LLMs
+
+	- Anthropic Claude: Prompted by the NLX Bot to provide the relevant information, diagrams, and evaluation of diagrams
+
+	- Gemini 1.5 Flash: Leveraged Gemini not only to summarize chat interactions but also to analyze conversation data and deliver insights back to the LLM. This allows the assistant to adapt and provide more accurate, contextually relevant responses over time, enhancing the learning experience as it continuously refines its understanding of user needs
+
+* Speech Recognition: OpenAI Whisper 
+* State Management: Used React hooks for efficient state management across components
+* Server-Side API Rendering: intelligent server side API routing within Next.js
+* Styling: Tailwind CSS for responsive and customizable styling
+* PDF Generation: Integrated jsPDF for creating downloadable study guides
+
+
+## Challenges we ran into
+
+* Integrating real-time diagramming with AI assistance while maintaining performance
+* Implementing a smooth user experience across devices and screen sizes
+* Balancing feature richness with simplicity to avoid overwhelming users
+* Ensuring accessibility, especially with voice interactions and dark mode
+* Managing version history of diagrams efficiently
+
+
+## Accomplishments that we're proud of
+
+* Created a seamless integration between visual learning and AI assistance
+* Implemented a responsive design that works well on both desktop and mobile devices
+* Successfully integrated voice capabilities for a hands-free learning experience
+* Developed an intuitive version history system for tracking learning progress
+* Designed an aesthetically pleasing interface with both light and dark modes
+
+## What we learned
+
+* The importance of user experience in educational tools
+* Techniques for integrating AI capabilities into web applications
+* Strategies for managing complex state in React applications
+* The power of visual learning when combined with interactive technology
+* The challenges and rewards of creating accessible, multimodal interfaces
+
+
+## What's next for GraphIQ
+
+* Collaborative Features: Allow multiple users to work on diagrams together in real-time
+* Advanced AI Capabilities: Implement more sophisticated AI features, including a wider array of diagrams
+* Support for additional subjects: This idea can be extended to other academic fields such as Biology and Chemistry where diagrams are vital for learning the material
+* Integration with Learning Management Systems: Enable easy use in formal educational settings
+* Mobile App: Develop native mobile applications for iOS and Android
+* Data Analytics: Implement learning analytics to help users track their progress and identify areas for improvement
+* Expanded Diagram Types: Support additional types of diagrams and visualizations beyond Mermaid
+* Community Features: Create a platform for users to share and collaborate on diagrams and learning resources
+
+
+GraphIQ aims to transform the way people learn and understand complex information, making education more interactive, accessible, and engaging for everyone.
+
