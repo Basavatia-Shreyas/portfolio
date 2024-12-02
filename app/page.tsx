@@ -118,7 +118,7 @@ export default function Home() {
       </TabsContent>
       <TabsContent value="personal">
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          {professional
+          {personal
             .map((project, index) => (
               <ProjectCard key={index} project={project}>
 
