@@ -19,9 +19,13 @@ import getPostMetaData from "@/utils/getPostMetadata";
 export default function Home() {
   //const sorted = require("./content.json");
   const postMetadata = getPostMetaData("projects")
-  const professional = postMetadata.filter((project) => project.type === "professional")
-  const personal = postMetadata.filter((project) => project.type === "personal")
-  const group = postMetadata.filter((project) => project.type === "group")
+  const sortedMetadata = postMetadata.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const professional = sortedMetadata.filter((project) => project.type === "professional")
+
+  const personal = sortedMetadata.filter((project) => project.type === "personal")
+  const group = sortedMetadata.filter((project) => project.type === "group")
   //console.log(postMetadata);
 
   return (
@@ -93,96 +97,33 @@ export default function Home() {
       </TabsList>
       <Separator className="h-1 rounded-xl mt-2 mb-4" />
       <TabsContent value="professional">
-      <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
             {professional
-              .filter((_, i) => i % 3 === 0)
               .map((project, index) => (
                 <ProjectCard key={index} project={project}>
 
                 </ProjectCard>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {professional
-              .filter((_, i) => i % 3 === 1)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
-
-                </ProjectCard>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {professional
-              .filter((_, i) => i % 3 === 2)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
-
-                </ProjectCard>
-              ))}
-          </div>
+            ))}
         </div>
       </TabsContent>
       <TabsContent value="group">
-      <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          <div className="grid grid-cols-1 gap-4">
-            {group
-              .filter((_, i) => i % 3 === 0)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
+        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
+          {group
+            .map((project, index) => (
+              <ProjectCard key={index} project={project}>
 
-                </ProjectCard>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {group
-              .filter((_, i) => i % 3 === 1)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
-
-                </ProjectCard>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {group
-              .filter((_, i) => i % 3 === 2)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
-
-                </ProjectCard>
-              ))}
-          </div>
+              </ProjectCard>
+          ))}
         </div>
       </TabsContent>
       <TabsContent value="personal">
-      <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          <div className="grid grid-cols-1 gap-4">
-            {personal
-              .filter((_, i) => i % 3 === 0)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
+        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
+          {professional
+            .map((project, index) => (
+              <ProjectCard key={index} project={project}>
 
-                </ProjectCard>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {personal
-              .filter((_, i) => i % 3 === 1)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
-
-                </ProjectCard>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {personal
-              .filter((_, i) => i % 3 === 2)
-              .map((project, index) => (
-                <ProjectCard key={index} project={project}>
-
-                </ProjectCard>
-              ))}
-          </div>
+              </ProjectCard>
+          ))}
         </div>
       </TabsContent>
     </Tabs>

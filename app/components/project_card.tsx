@@ -19,18 +19,28 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
 	const items = project.tags.split(',');
+
+	const formattedDate = new Intl.DateTimeFormat("en-US", {
+		month: "long",
+		day: "numeric",
+		year: "numeric",
+	}).format(new Date(project.date));
+
 	return (
 		<Link href={`/project/${project.slug}`}>
 			<div className="overflow-hidden relative duration-700 border-2 rounded-xl hover:bg-zinc-800/10 group md:gap-8 hover:border-zinc-200/50 border-zinc-300 py-8 px-5">
 				<h1 className="font-display text-3xl mb-3">
 					{project.title}
 				</h1>
+				<p className="px-1">
+					{formattedDate}
+				</p>
 				<div className="my-2">
 					{items.map((item, index) => (
 						<Badge key={index} variant="secondary" className="mx-1">{item}</Badge>
 					))}
 				</div>
-				<p className="text-zinc-400 text-sm">
+				<p className="text-zinc-400 text-sm px-1">
 					{project.description}
 				</p>
 			</div>
