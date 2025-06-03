@@ -1,4 +1,3 @@
-
 import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
@@ -42,6 +41,7 @@ export const metadata: Metadata = {
     shortcut: "/portfolio-icon.png",
   },
 };
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -58,8 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${calSans.variable}`}>
-      <body className="h-screen">
+    <html lang="en" className={`dark ${inter.variable} ${calSans.variable}`}>
+      <body className="min-h-screen bg-zinc-900 text-white antialiased">
         {children}
       </body>
     </html>

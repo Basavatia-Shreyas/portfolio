@@ -21,7 +21,6 @@ import rehypeHighlight from "rehype-highlight";
 import { useProject } from "@/hooks/useFirestore";
 import Image from "next/image";
 import Link from "next/link";
-import "highlight.js/styles/github-dark.css"; // Add syntax highlighting theme
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Timestamp } from "firebase/firestore";
 
