@@ -16,17 +16,33 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Replace with your actual password or use environment variable
-    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "your_admin_password";
-    
-    if (password === adminPassword) {
-      setIsAuthenticated(true);
-      setError("");
-    } else {
-      setError("Invalid password");
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        setError("");
+      } else {
+        setError("Invalid password");
+      }
+    } catch (error) {
+      setError("Authentication failed");
+    } finally {
+      setLoading(false);
+      setPassword("");
     }
   };
 
@@ -52,13 +68,14 @@ export default function AdminPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="bg-zinc-700 border-zinc-600 text-white"
                   placeholder="Enter admin password"
+                  disabled={loading}
                 />
               </div>
               {error && (
                 <p className="text-red-400 text-sm">{error}</p>
               )}
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? "Authenticating..." : "Login"}
               </Button>
             </form>
           </CardContent>
