@@ -4,11 +4,8 @@ import { useParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ExternalLink,
-  Github,
   Calendar,
   Tag,
-  MapPin,
-  Users,
   Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,9 +13,6 @@ import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import ReactMarkdown from "react-markdown";
@@ -29,6 +23,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "highlight.js/styles/github-dark.css"; // Add syntax highlighting theme
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Timestamp } from "firebase/firestore";
 
 export default function ProjectPage() {
   const params = useParams();
@@ -67,7 +62,7 @@ export default function ProjectPage() {
     );
   }
 
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Timestamp) => {
     if (timestamp?.toDate) {
       return timestamp.toDate().toLocaleDateString("en-US", {
         year: "numeric",
@@ -321,7 +316,7 @@ export default function ProjectPage() {
                     </blockquote>
                   ),
                   code: ({ node, children, ...props }) =>
-                    node && (node as any).inline ? (
+                    node && "inline" in node && (node as { inline?: boolean }).inline ? (
                       <code
                         className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded text-sm"
                         {...props}

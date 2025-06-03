@@ -11,6 +11,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
     }
   } catch (error) {
-    return NextResponse.json({ error: 'Authentication failed' }, { status: 500 });
+    return NextResponse.json({ error: `Authentication failed: ${error}` }, { status: 500 });
   }
 }

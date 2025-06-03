@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Upload, FileText, AlertCircle } from 'lucide-react';
 import { uploadResume, getResumeMetadata } from '@/lib/database';
 import { useEffect } from 'react';
+import { Timestamp } from 'firebase/firestore';
 
 export default function ResumeForm() {
   const [file, setFile] = useState<File | null>(null);
@@ -17,7 +18,7 @@ export default function ResumeForm() {
   const [currentResume, setCurrentResume] = useState<{
     url: string;
     fileName: string;
-    uploadedAt: any;
+    uploadedAt: Timestamp;
     size: number;
   } | null>(null);
 
@@ -92,7 +93,7 @@ export default function ResumeForm() {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Timestamp) => {
     if (timestamp?.toDate) {
       return timestamp.toDate().toLocaleDateString('en-US', {
         year: 'numeric',

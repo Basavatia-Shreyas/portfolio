@@ -41,13 +41,11 @@ export default function ProjectForm() {
   const [newTool, setNewTool] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setSuccess("");
-    setError("");
 
     // Validation
     if (
@@ -57,7 +55,6 @@ export default function ProjectForm() {
       !formData.date ||
       !formData.status
     ) {
-      setError("Please fill in all required fields");
       setLoading(false);
       return;
     }

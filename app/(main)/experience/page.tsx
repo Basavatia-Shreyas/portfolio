@@ -26,6 +26,12 @@ export default function ExperiencePage() {
     );
   }
 
+  if (projectsError) {
+    return (
+      <div className="text-red-400 text-center">Error: {projectsError}</div>
+    );
+  }
+
   return (
     <div className="text-white">
 
@@ -34,7 +40,7 @@ export default function ExperiencePage() {
         <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-zinc-600"></div>
 
         <div className="space-y-8">
-          {experiences.map((experience, index) => (
+          {experiences.map((experience) => (
             <div key={experience.id} className="relative flex items-start">
               {/* Timeline dot */}
               <div className="absolute left-6 w-4 h-4 bg-white rounded-full border-4 border-zinc-900 z-10"></div>

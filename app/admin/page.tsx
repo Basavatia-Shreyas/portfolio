@@ -39,7 +39,7 @@ export default function AdminPage() {
         setError("Invalid password");
       }
     } catch (error) {
-      setError("Authentication failed");
+      setError(`Authentication failed: ${error}`);
     } finally {
       setLoading(false);
       setPassword("");

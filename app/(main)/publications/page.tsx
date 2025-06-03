@@ -31,6 +31,12 @@ export default function PublicationsPage() {
     );
   }
 
+  if (projectsError) {
+    return (
+      <div className="text-red-400 text-center">Error: {projectsError}</div>
+    );
+  }
+
   return (
     <div className="text-white">
       <div className="relative">
@@ -38,7 +44,7 @@ export default function PublicationsPage() {
         <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-zinc-600"></div>
 
         <div className="space-y-8">
-          {publications.map((publication, index) => (
+          {publications.map((publication) => (
             <div key={publication.id} className="relative flex items-start">
               {/* Timeline dot */}
               <div className="absolute left-6 w-4 h-4 bg-white rounded-full border-4 border-zinc-900 z-10"></div>

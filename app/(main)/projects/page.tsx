@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -10,24 +9,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ProjectCard from "@/components/project_card";
-import { Search, Filter, Loader2 } from "lucide-react";
+import { Filter, Loader2 } from "lucide-react";
 import { useProjects, useProjectTechnologies } from "@/hooks/useFirestore";
 import { ProjectFilters } from "@/types/types";
 
 export default function ProjectsPage() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [techFilter, setTechFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
 
   const filters: ProjectFilters = useMemo(
     () => ({
-      searchTerm: searchTerm || undefined,
       type: typeFilter !== "all" ? typeFilter : undefined,
       technology: techFilter !== "all" ? techFilter : undefined,
       status: statusFilter !== "all" ? statusFilter : undefined,
     }),
-    [searchTerm, typeFilter, techFilter, statusFilter]
+    [typeFilter, techFilter, statusFilter]
   );
 
   const {

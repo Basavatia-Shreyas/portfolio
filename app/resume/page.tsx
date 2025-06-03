@@ -1,30 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Download, ZoomIn, ZoomOut, RotateCw } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, Download } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getResumeMetadata } from "@/lib/database";
 import Link from "next/link";
-
-// Set up PDF.js worker
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+import { Timestamp } from "firebase/firestore";
 
 export default function ResumePage() {
   const router = useRouter();
   const [resumeData, setResumeData] = useState<{
     url: string;
     fileName: string;
-    uploadedAt: any;
+    uploadedAt: Timestamp;
     size: number;
   } | null>(null);
-  const [numPages, setNumPages] = useState<number | null>(null);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [scale, setScale] = useState(1.0);
-  const [rotation, setRotation] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,10 +41,6 @@ export default function ResumePage() {
     }
   };
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
-  }
-
   const formatFileSize = (bytes: number) => {
     if (bytes === 0) return "0 Bytes";
     const k = 1024;
@@ -61,7 +49,7 @@ export default function ResumePage() {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Timestamp) => {
     if (timestamp?.toDate) {
       return timestamp.toDate().toLocaleDateString("en-US", {
         year: "numeric",

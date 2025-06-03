@@ -6,9 +6,10 @@ import Image from "next/image";
 import { Project } from "@/types/types";
 import { Calendar, ExternalLink, Github, Star, Clock, Code2 } from "lucide-react";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Timestamp } from "firebase/firestore";
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Timestamp) => {
     if (timestamp?.toDate) {
       return timestamp.toDate().toLocaleDateString('en-US', {
         year: 'numeric',
