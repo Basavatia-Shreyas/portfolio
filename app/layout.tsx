@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import "@/global.css";
+import { AuthProvider } from "@/components/auth_context";
 
 export const metadata: Metadata = {
   title: {
@@ -60,7 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${inter.variable} ${calSans.variable}`}>
       <body className="min-h-screen bg-zinc-900 text-white antialiased">
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

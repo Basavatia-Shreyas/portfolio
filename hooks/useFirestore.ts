@@ -7,11 +7,13 @@ import {
   getProjectById
 } from '@/lib/database';
 import { Experience, Project, Publication, ProjectFilters } from '@/types/types';
+import { useAuth } from '@/components/auth_context';
 
 export function useExperiences() {
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user, loading: authLoading } = useAuth();
 
   useEffect(() => {
     const fetchExperiences = async () => {
@@ -27,16 +29,23 @@ export function useExperiences() {
       }
     };
 
-    fetchExperiences();
-  }, []);
+    // Only fetch data when user is authenticated
+    if (user && !authLoading) {
+      fetchExperiences();
+    } else if (!authLoading && !user) {
+      setLoading(false);
+      setError('Authentication required');
+    }
+  }, [user, authLoading]);
 
-  return { experiences, loading, error };
+  return { experiences, loading: loading || authLoading, error };
 }
 
 export function useProjects(filters?: ProjectFilters) {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user, loading: authLoading } = useAuth();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -52,16 +61,23 @@ export function useProjects(filters?: ProjectFilters) {
       }
     };
 
-    fetchProjects();
-  }, [filters?.type, filters?.status, filters?.featured, filters?.searchTerm, filters?.technology]);
+    // Only fetch data when user is authenticated
+    if (user && !authLoading) {
+      fetchProjects();
+    } else if (!authLoading && !user) {
+      setLoading(false);
+      setError('Authentication required');
+    }
+  }, [user, authLoading, filters?.type, filters?.status, filters?.featured, filters?.searchTerm, filters?.technology]);
 
-  return { projects, loading, error };
+  return { projects, loading: loading || authLoading, error };
 }
 
 export function useProjectTechnologies() {
   const [technologies, setTechnologies] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user, loading: authLoading } = useAuth();
 
   useEffect(() => {
     const fetchTechnologies = async () => {
@@ -77,16 +93,23 @@ export function useProjectTechnologies() {
       }
     };
 
-    fetchTechnologies();
-  }, []);
+    // Only fetch data when user is authenticated
+    if (user && !authLoading) {
+      fetchTechnologies();
+    } else if (!authLoading && !user) {
+      setLoading(false);
+      setError('Authentication required');
+    }
+  }, [user, authLoading]);
 
-  return { technologies, loading, error };
+  return { technologies, loading: loading || authLoading, error };
 }
 
 export function usePublications() {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user, loading: authLoading } = useAuth();
 
   useEffect(() => {
     const fetchPublications = async () => {
@@ -102,16 +125,23 @@ export function usePublications() {
       }
     };
 
-    fetchPublications();
-  }, []);
+    // Only fetch data when user is authenticated
+    if (user && !authLoading) {
+      fetchPublications();
+    } else if (!authLoading && !user) {
+      setLoading(false);
+      setError('Authentication required');
+    }
+  }, [user, authLoading]);
 
-  return { publications, loading, error };
+  return { publications, loading: loading || authLoading, error };
 }
 
 export function useProject(id: string) {
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user, loading: authLoading } = useAuth();
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -127,10 +157,14 @@ export function useProject(id: string) {
       }
     };
 
-    if (id) {
+    // Only fetch data when user is authenticated and id is provided
+    if (id && user && !authLoading) {
       fetchProject();
+    } else if (!authLoading && !user) {
+      setLoading(false);
+      setError('Authentication required');
     }
-  }, [id]);
+  }, [id, user, authLoading]);
 
-  return { project, loading, error };
+  return { project, loading: loading || authLoading, error };
 }
