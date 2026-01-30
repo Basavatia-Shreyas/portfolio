@@ -52,12 +52,8 @@ export default function RootLayout({
                 About me
               </h2>
               <p className="text-gray-300">
-                I am a student at Georgia Tech pursuing my bachelor of science
-                in computer science. I am passionate about advancing natural
-                language processing and machine learning technologies and would
-                like to further integrate them into everyday life. I am also
-                interested in web development through the full stack projects I
-                have created.
+                Hey my name is Shreyas and I am a Computer Science student at Georgia Tech.
+                I am passionate about integrating machine learning, and AI into real world applications.
               </p>
             </div>
 
